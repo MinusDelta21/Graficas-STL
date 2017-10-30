@@ -60,8 +60,8 @@ void MeshGL::Create() {
 	HRESULT hr;
 	tex = new D3DXTexture;
 
-	char *vsSourceP = file2string("VS_Mesh.hlsl");
-	char *fsSourceP = file2string("FS_Mesh.hlsl");
+	char *vsSourceP = file2string("VS.hlsl");
+	char *fsSourceP = file2string("FS.hlsl");
 
 	if (!vsSourceP || !fsSourceP)
 		exit(32);
@@ -292,10 +292,32 @@ void MeshGL::Create() {
 							glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, (void*)(buffer));
 							glGenerateMipmap(GL_TEXTURE_2D);
 						#elif defined(USING_D3D11)
-						
+						D3D11_TEXTURE2D_DESC desc = { 0 };
+			desc.Width = x;
+			desc.Height = y;
+			desc.ArraySize = 1;			
+			
+			desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+
+			desc.SampleDesc.Count = 1;
+			desc.BindFlags = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET;
+			desc.MiscFlags = D3D11_RESOURCE_MISC_GENERATE_MIPS;
+
+			D3D11_SUBRESOURCE_DATA initData{};
+			initData.pSysMem = buffer;
+			initData.SysMemPitch = sizeof(unsigned char) * x * 4;
+
+			D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc{};
+			srvDesc.Format = desc.Format;
+			srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+			srvDesc.Texture2D.MipLevels = -1;
+
+			D3D11Device->CreateTexture2D(&desc, nullptr, myMesh->MaterialList[diffuseCount].Tex.GetAddressOf());
+
+			D3D11Device->CreateShaderResourceView(myMesh->MaterialList[diffuseCount].Tex.Get(), &srvDesc, myMesh->MaterialList[diffuseCount].pSRVTex.GetAddressOf());
+			D3D11DeviceContext->UpdateSubresource(myMesh->MaterialList[diffuseCount].Tex.Get(), 0, 0, buffer, initData.SysMemPitch, 0);
+			D3D11DeviceContext->GenerateMips(myMesh->MaterialList[diffuseCount].pSRVTex.Get());
 						#endif
-
-
 							++diffuseCount;
 						}
 						diffuseCount = 0;
@@ -320,6 +342,7 @@ void MeshGL::Create() {
 			glBufferData(GL_ARRAY_BUFFER, Meshes[i]->num_Vertices * sizeof(MeshVertex), Meshes[i]->vertices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		#elif defined(USING_D3D11)
+		
 		bdesc = { 0 };
 		bdesc.ByteWidth = sizeof(MeshVertex) * Meshes[i]->num_Vertices;
 		bdesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
@@ -332,48 +355,6 @@ void MeshGL::Create() {
 			return;
 		}
 
-		for (int j = 0; j < Meshes[i]->MaterialList.size(); j++) {
-
-			bdesc = { 0 };
-			bdesc.ByteWidth = Meshes[i]->MaterialList[j].size * sizeof(unsigned short);
-			bdesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-
-			subData = { Meshes[i]->indices, 0, 0 };
-
-			hr = D3D11Device->CreateBuffer(&bdesc, &subData, &Meshes[i]->MaterialList[j].IB);
-			if (hr != S_OK) {
-				printf("Error Creating Index Buffer\n");
-				myfile.close();															// Finish 
-				return;
-			}
-			bdesc = { 0 };
-			bdesc.ByteWidth = sizeof(MeshVertex) *Meshes[i]->num_Vertices;
-			bdesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-			subData = { Meshes[i]->vertices, 0, 0 }; // -->
-
-			hr = D3D11Device->CreateBuffer(&bdesc, &subData, &Meshes[i]->VB);
-			if (hr != S_OK) {
-				printf("Error Creating Vertex Buffer\n");
-				myfile.close();															// Finish 
-				return;
-		}
-
-			
-
-			bdesc = { 0 };
-			bdesc.ByteWidth = Meshes[i]->MaterialList[j].size * sizeof(unsigned short);
-			bdesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-
-			subData = { Meshes[i]->indices, 0, 0 };
-
-			hr = D3D11Device->CreateBuffer(&bdesc, &subData, &Meshes[i]->MaterialList[j].IB);
-			if (hr != S_OK) {
-				printf("Error Creating Index Buffer\n");
-				myfile.close();													// Finish 
-				return;
-			}
-			
-		}
 		#endif
 			for (int j = 0; j < Meshes[i]->MaterialList.size(); ++j) {
 			#ifdef USING_OPENGL_ES
@@ -383,7 +364,19 @@ void MeshGL::Create() {
 				glBufferData(GL_ELEMENT_ARRAY_BUFFER, Meshes[i]->MaterialList[j].size  * sizeof(unsigned short), Meshes[i]->MaterialList[j].Contenedor, GL_STATIC_DRAW);
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 			#elif defined(USING_D3D11)
+				
+				bdesc = { 0 };
+				bdesc.ByteWidth = Meshes[i]->MaterialList[j].size * sizeof(unsigned short);
+				bdesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 
+				subData = { Meshes[i]->indices, 0, 0 };
+
+				hr = D3D11Device->CreateBuffer(&bdesc, &subData, &Meshes[i]->MaterialList[j].IB);
+				if (hr != S_OK) {
+					printf("Error Creating Index Buffer\n");
+					myfile.close();													// Finish 
+					return;
+				}
 			#endif
 			}
 		
@@ -459,6 +452,10 @@ void MeshGL::Draw(float *t, float *vp) {
 	VP = vp;
 	Matrix WVP;
 	WVP.myMatrix = transform.myMatrix*VP.myMatrix;
+
+	CnstBuffer.WVP = WVP.myMatrix;
+	CnstBuffer.World = transform.myMatrix;
+
 	UINT stride = sizeof(MeshVertex);
 	UINT offset = 0;
 	D3D11DeviceContext->VSSetShader(pVS.Get(), 0, 0);
@@ -476,8 +473,8 @@ void MeshGL::Draw(float *t, float *vp) {
 	D3D11DeviceContext->VSSetConstantBuffers(0, 1, pd3dConstantBuffer.GetAddressOf());
 	D3D11DeviceContext->PSSetConstantBuffers(0, 1, pd3dConstantBuffer.GetAddressOf());
 	for (int i = 0; i < Meshes.size(); i++) {
-		for (int j = 0; j < Meshes[i]->MaterialList.size(); ++j) {
-			D3D11DeviceContext->IASetVertexBuffers(0, 1, Meshes[i]->MaterialList[j].VB.GetAddressOf(), &stride, &offset);
+		D3D11DeviceContext->IASetVertexBuffers(0, 1, Meshes[i]->VB.GetAddressOf(), &stride, &offset);
+		for (int j = 0; j < Meshes[i]->MaterialList.size(); ++j) {			
 			D3D11DeviceContext->IASetIndexBuffer(Meshes[i]->MaterialList[i].IB.Get(), DXGI_FORMAT_R16_UINT, 0);
 			D3D11DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 			D3D11DeviceContext->DrawIndexed(Meshes[i]->MaterialList[i].size, 0, 0);

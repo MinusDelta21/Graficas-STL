@@ -17,8 +17,13 @@ c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\t
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\trianglegl.obj
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\utilsgl.obj
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\win32framework.obj
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\config.obj
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\xdatabase.obj
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\d3dxmesh.obj
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\d3dxrt.obj
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\d3dxshader.obj
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\d3dxtexture.obj
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\debug\framework.lib
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\meshgl.obj.enc
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\debug\framework.pdb
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\framework.tlog\cl.command.1.tlog
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\debug\framework.tlog\cl.read.1.tlog

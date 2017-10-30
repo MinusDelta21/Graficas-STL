@@ -37,7 +37,6 @@ struct Material {
 	ComPtr<ID3D11ShaderResourceView>    pSRVTex;
 	ComPtr<ID3D11SamplerState>          pSampler;
 	ComPtr<ID3D11Buffer>		IB;
-	ComPtr<ID3D11Buffer>		VB;
 
 	
 #endif

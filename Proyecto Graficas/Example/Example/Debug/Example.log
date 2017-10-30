@@ -1,13 +1,12 @@
 ﻿  MeshGl.cpp
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(309): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(313): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(331): warning C4018: '<': signed/unsigned mismatch
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(335): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(378): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(470): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(471): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(478): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(479): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(359): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(467): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(468): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(475): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(477): warning C4018: '<': signed/unsigned mismatch
 Core.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
   Example.vcxproj -> C:\Users\Santiago\Desktop\Graficas-STL\Proyecto Graficas\Example\Debug\Framework.lib
