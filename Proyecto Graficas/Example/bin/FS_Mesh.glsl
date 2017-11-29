@@ -1,5 +1,4 @@
 uniform mediump sampler2D Diffuse;
-
 varying highp vec3 vecTransformed;
 varying highp vec2 vecUVCoords;
 varying highp vec4 vecPosition;

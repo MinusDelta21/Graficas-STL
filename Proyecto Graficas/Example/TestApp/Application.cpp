@@ -142,22 +142,22 @@ void TestApp::OnInput() {
 	const float speedFactor = 10.0f;
 	if (IManager.PressedKey(SDLK_DOWN)) {
 		//Position.y += 1.0f*speedFactor*Dtsecs;
-		sceneProps.Lights[0].Position.y += 1.0f*speedFactor*Dtsecs;
-		changed = true;
-	}
-
-	if (IManager.PressedKey(SDLK_UP)) {
 		sceneProps.Lights[0].Position.y -= 1.0f*speedFactor*Dtsecs;
 		changed = true;
 	}
 
+	if (IManager.PressedKey(SDLK_UP)) {
+		sceneProps.Lights[0].Position.y += 1.0f*speedFactor*Dtsecs;
+		changed = true;
+	}
+
 	if (IManager.PressedKey(SDLK_RIGHT)) {
-		sceneProps.Lights[0].Position.x -= 1.0f*speedFactor*Dtsecs;
+		sceneProps.Lights[0].Position.x += 1.0f*speedFactor*Dtsecs;
 		changed = true;
 	}
 
 	if (IManager.PressedKey(SDLK_LEFT)) {
-		sceneProps.Lights[0].Position.x += 1.0f*speedFactor*Dtsecs;
+		sceneProps.Lights[0].Position.x -= 1.0f*speedFactor*Dtsecs;
 		changed = true;
 	}
 

@@ -15,7 +15,7 @@ public:
 	void	DestroySurfaces();
 	void	Update();
 	void	DestroyDriver();
-	void	SetWindow(void *window) ;
+	void	SetWindow(void *window);
 	void	SetDimensions(int x, int y);
 	void	Clear();
 	void	SwapBuffers();
@@ -26,7 +26,25 @@ public:
 	EGLContext			eglContext;
 
 	EGLNativeWindowType	eglWindow;
+	int 	 CreateTexture(std::string) { return 0; };
+	Texture* GetTexture(int id) { Texture* x; return x; };
+	void	 DestroyTexture() {};
 
+	int 	 CreateRT(int nrt, int cf, int df, int w, int h) { return 0; };
+	void	 PushRT(int id) {};
+	void	 PopRT() {};
+	void	 DestroyRT(int id) {};
+	void	 DestroyRTs() {};
+	Texture* GetRTTexture(int id, int index) { Texture* x; return x; };
+
+	int			CreateShader(std::string src_vs, std::string src_fs, unsigned int sig) { return 0; };
+	ShaderBase*	GetShaderSig(unsigned int sig) { ShaderBase* x; return x; };
+	ShaderBase*	GetShaderIdx(int id) { ShaderBase* x; return x; };
+	void		DestroyShaders() {};
+
+	std::vector<ShaderBase*>	Shaders;
+	std::vector<BaseRT*>		RTs;
+	std::vector<Texture*>		Textures;
 };
 
 #endif

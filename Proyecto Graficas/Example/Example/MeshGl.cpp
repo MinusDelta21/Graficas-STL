@@ -336,19 +336,19 @@ void MeshGL::Create() {
 		#ifdef USING_OPENGL_ES
 			Info[i].num_Vertices = Meshes[i]->num_Vertices;
 			Info[i].num_Indices = Meshes[i]->num_Indices;
-
 			glGenBuffers(1, &Info[i].VB);
 			glBindBuffer(GL_ARRAY_BUFFER, Info[i].VB);
 			glBufferData(GL_ARRAY_BUFFER, Meshes[i]->num_Vertices * sizeof(MeshVertex), Meshes[i]->vertices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		#elif defined(USING_D3D11)
-		
+		Info[i].num_Vertices = Meshes[i]->num_Vertices;
+		Info[i].num_Indices = Meshes[i]->num_Indices;
 		bdesc = { 0 };
-		bdesc.ByteWidth = sizeof(MeshVertex) * Meshes[i]->num_Vertices;
+		bdesc.ByteWidth = sizeof(MeshVertex) * Info[i].num_Vertices;
 		bdesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 		subData = { Meshes[i]->vertices, 0, 0 }; // -->
 
-		hr = D3D11Device->CreateBuffer(&bdesc, &subData, &Meshes[i]->VB);
+		hr = D3D11Device->CreateBuffer(&bdesc, &subData, &Info[i].VB);
 		if (hr != S_OK) {
 			printf("Error Creating Vertex Buffer\n");
 			myfile.close();															// Finish 
@@ -369,7 +369,7 @@ void MeshGL::Create() {
 				bdesc.ByteWidth = Meshes[i]->MaterialList[j].size * sizeof(unsigned short);
 				bdesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 
-				subData = { Meshes[i]->indices, 0, 0 };
+				subData = { Meshes[i]->MaterialList[j].Contenedor, 0, 0 };
 
 				hr = D3D11Device->CreateBuffer(&bdesc, &subData, &Meshes[i]->MaterialList[j].IB);
 				if (hr != S_OK) {
@@ -455,29 +455,42 @@ void MeshGL::Draw(float *t, float *vp) {
 
 	CnstBuffer.WVP = WVP.myMatrix;
 	CnstBuffer.World = transform.myMatrix;
+	//Asignar posicion de luz
+	CnstBuffer.Light0Pos.x = theProps->Lights[0].Position.x;
+	CnstBuffer.Light0Pos.y = theProps->Lights[0].Position.y;
+	CnstBuffer.Light0Pos.z = theProps->Lights[0].Position.z;
+	//Asignar color de luz
+	CnstBuffer.Light0Col.x = theProps->Lights[0].Color.x;
+	CnstBuffer.Light0Col.y = theProps->Lights[0].Color.y;
+	CnstBuffer.Light0Col.z = theProps->Lights[0].Color.z;
+	//Asignar posicion de la camara
+	CnstBuffer.CameraPos.x = theProps->pCameras[0]->Eye.x;
+	CnstBuffer.CameraPos.y = theProps->pCameras[0]->Eye.y;
+	CnstBuffer.CameraPos.z = theProps->pCameras[0]->Eye.z;
+	//Asignar ambient color
+	CnstBuffer.Ambient.x = theProps->AmbientColor.x;
+	CnstBuffer.Ambient.y = theProps->AmbientColor.y;
+	CnstBuffer.Ambient.z = theProps->AmbientColor.z;
+
 
 	UINT stride = sizeof(MeshVertex);
 	UINT offset = 0;
 	D3D11DeviceContext->VSSetShader(pVS.Get(), 0, 0);
 	D3D11DeviceContext->PSSetShader(pFS.Get(), 0, 0);
-
 	D3D11DeviceContext->IASetInputLayout(Layout.Get());
-
 	D3D11DeviceContext->UpdateSubresource(pd3dConstantBuffer.Get(), 0, 0, &CnstBuffer, 0, 0);
-	for (int i = 0; i < Meshes.size(); i++) {
-		for (int j = 0; j < Meshes[i]->MaterialList.size(); ++j) {
-			D3D11DeviceContext->PSSetShaderResources(0, 1, Meshes[i]->MaterialList[j].pSRVTex.GetAddressOf());
-			D3D11DeviceContext->PSSetSamplers(0, 1, Meshes[i]->MaterialList[j].pSampler.GetAddressOf());
-		}
-	}
 	D3D11DeviceContext->VSSetConstantBuffers(0, 1, pd3dConstantBuffer.GetAddressOf());
 	D3D11DeviceContext->PSSetConstantBuffers(0, 1, pd3dConstantBuffer.GetAddressOf());
+	
+	
 	for (int i = 0; i < Meshes.size(); i++) {
-		D3D11DeviceContext->IASetVertexBuffers(0, 1, Meshes[i]->VB.GetAddressOf(), &stride, &offset);
+		D3D11DeviceContext->IASetVertexBuffers(0, 1, Info[i].VB.GetAddressOf(), &stride, &offset);
 		for (int j = 0; j < Meshes[i]->MaterialList.size(); ++j) {			
-			D3D11DeviceContext->IASetIndexBuffer(Meshes[i]->MaterialList[i].IB.Get(), DXGI_FORMAT_R16_UINT, 0);
+			D3D11DeviceContext->PSSetShaderResources(0, 1, Meshes[i]->MaterialList[j].pSRVTex.GetAddressOf());
+			D3D11DeviceContext->PSSetSamplers(0, 1, Meshes[i]->MaterialList[j].pSampler.GetAddressOf());
+			D3D11DeviceContext->IASetIndexBuffer(Meshes[i]->MaterialList[j].IB.Get(), DXGI_FORMAT_R16_UINT, 0);
 			D3D11DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-			D3D11DeviceContext->DrawIndexed(Meshes[i]->MaterialList[i].size, 0, 0);
+			D3D11DeviceContext->DrawIndexed(Meshes[i]->MaterialList[j].size, 0, 0);
 		}
 	}
 

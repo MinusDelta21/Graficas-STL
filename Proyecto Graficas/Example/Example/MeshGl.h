@@ -61,26 +61,28 @@ struct Mesh
 	int num_Indices;
 	vector<Material> MaterialList;
 	vector<CTexture>Textures;
-	ComPtr<ID3D11Buffer>		VB;
 };
 
 struct Buffers {
 #ifdef USING_OPENGL_ES
 	GLuint			VB;
 	GLuint			IB;
-	int num_Vertices;
-	int num_Indices;
+	
 #elif defined(USING_D3D11)
 	
 	Matrix4D WVP;
 	Matrix4D World;
-	Vector3  Light0Pos;
-	Vector3  Light0Col;
-	Vector3  CameraPos;
-	Vector3  Ambient;
-	
+	Vector4D  Light0Pos;
+	Vector4D  Light0Col;
+	Vector4D  CameraPos;
+	Vector4D  Ambient;
+	ComPtr<ID3D11Buffer>		IB;
+	ComPtr<ID3D11Buffer>		VB;
+
 	
 #endif
+	int num_Vertices;
+	int num_Indices;
 };
 
 class MeshGL : public PrimitiveBase {
@@ -103,11 +105,11 @@ public:
 	MeshGL() : shaderID(0) {}
 	GLuint	shaderID;
 	GLint	vertexAttribLoc;
-	GLint lightPosLoc;
+	GLint	lightPosLoc;
 	GLint	normalAttribLoc;
 	GLint	uvAttribLoc;
-	GLint  matWorldViewProjUniformLoc;
-	GLint  matWorldUniformLoc;
+	GLint   matWorldViewProjUniformLoc;
+	GLint   matWorldUniformLoc;
 #elif defined(USING_D3D11)
 	ComPtr<ID3D11VertexShader>  pVS;
 	ComPtr<ID3D11PixelShader>   pFS;
