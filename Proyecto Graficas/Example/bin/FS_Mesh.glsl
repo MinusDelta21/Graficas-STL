@@ -3,6 +3,7 @@ varying highp vec3 vecTransformed;
 varying highp vec2 vecUVCoords;
 varying highp vec4 vecPosition;
 uniform highp vec4 LightPos;
+
 void main()
 {
 	highp vec3 vecLight =  LightPos.xyz -vecPosition.xyz;
