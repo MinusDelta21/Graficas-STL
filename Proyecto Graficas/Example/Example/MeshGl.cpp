@@ -340,6 +340,7 @@ void MeshGL::Create() {
 			glBindBuffer(GL_ARRAY_BUFFER, Info[i].VB);
 			glBufferData(GL_ARRAY_BUFFER, Meshes[i]->num_Vertices * sizeof(MeshVertex), Meshes[i]->vertices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 		#elif defined(USING_D3D11)
 		Info[i].num_Vertices = Meshes[i]->num_Vertices;
 		Info[i].num_Indices = Meshes[i]->num_Indices;
@@ -456,21 +457,13 @@ void MeshGL::Draw(float *t, float *vp) {
 	CnstBuffer.WVP = WVP.myMatrix;
 	CnstBuffer.World = transform.myMatrix;
 	//Asignar posicion de luz
-	CnstBuffer.Light0Pos.x = theProps->Lights[0].Position.x;
-	CnstBuffer.Light0Pos.y = theProps->Lights[0].Position.y;
-	CnstBuffer.Light0Pos.z = theProps->Lights[0].Position.z;
+	CnstBuffer.Light0Pos = theProps->Lights[0].Position;
 	//Asignar color de luz
-	CnstBuffer.Light0Col.x = theProps->Lights[0].Color.x;
-	CnstBuffer.Light0Col.y = theProps->Lights[0].Color.y;
-	CnstBuffer.Light0Col.z = theProps->Lights[0].Color.z;
+	CnstBuffer.Light0Col = theProps->Lights[0].Color;
 	//Asignar posicion de la camara
-	CnstBuffer.CameraPos.x = theProps->pCameras[0]->Eye.x;
-	CnstBuffer.CameraPos.y = theProps->pCameras[0]->Eye.y;
-	CnstBuffer.CameraPos.z = theProps->pCameras[0]->Eye.z;
+	CnstBuffer.CameraPos = theProps->pCameras[0]->Eye;
 	//Asignar ambient color
-	CnstBuffer.Ambient.x = theProps->AmbientColor.x;
-	CnstBuffer.Ambient.y = theProps->AmbientColor.y;
-	CnstBuffer.Ambient.z = theProps->AmbientColor.z;
+	CnstBuffer.Ambient = theProps->AmbientColor;
 
 
 	UINT stride = sizeof(MeshVertex);

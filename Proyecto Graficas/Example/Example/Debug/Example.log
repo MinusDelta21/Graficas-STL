@@ -1,35 +1,10 @@
-﻿  BaseDriver.cpp
-  Generating Code...
-  Compiling...
-  XDataBase.cpp
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(204): warning C4521: 'xF::xRotationKey': multiple copy constructors specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(204): warning C4522: 'xF::xRotationKey': multiple assignment operators specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(229): warning C4521: 'xF::xScaleKey': multiple copy constructors specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(229): warning C4522: 'xF::xScaleKey': multiple assignment operators specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(254): warning C4521: 'xF::xPositionKey': multiple copy constructors specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(254): warning C4522: 'xF::xPositionKey': multiple assignment operators specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(479): warning C4521: 'xF::xFinalGeometry': multiple copy constructors specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(479): warning C4522: 'xF::xFinalGeometry': multiple assignment operators specified
-  Win32Framework.cpp
-  PrimitiveManager.cpp
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
-  MeshGl.cpp
+﻿  MeshGl.cpp
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(331): warning C4018: '<': signed/unsigned mismatch
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(335): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(359): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(486): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(488): warning C4018: '<': signed/unsigned mismatch
-  GLDriver.cpp
-  D3DXTexture.cpp
-  D3DXShader.cpp
-  D3DXRT.cpp
-  D3DXDriver.cpp
-  Core.cpp
-  Generating Code...
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(360): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(479): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(481): warning C4018: '<': signed/unsigned mismatch
 Core.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
   Example.vcxproj -> C:\Users\Santiago\Desktop\Graficas-STL\Proyecto Graficas\Example\Debug\Framework.lib
