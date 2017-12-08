@@ -86,6 +86,9 @@
     <ClInclude Include="D3DXTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PhysxManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -153,6 +156,9 @@
     </ClCompile>
     <ClCompile Include="D3DXTexture.cpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysxManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

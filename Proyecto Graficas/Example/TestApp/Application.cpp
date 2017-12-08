@@ -4,11 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-//#include <PxPhysicsAPI.h>
-
+#include <PhysxManager.h>
 #define NUM_LIGHTS 124
 #define RADI 170.0f
-//using namespace physx;
 
 
 float g_time;
@@ -51,6 +49,7 @@ void TestApp::InitVars() {
 	}
 	RTIndex = -1;
 	FirstFrame = true;
+	physxManager.init();
 }
 
 void TestApp::CreateAssets() {
@@ -74,6 +73,7 @@ void TestApp::CreateAssets() {
 
 void TestApp::DestroyAssets() {
 	PrimitiveMgr.DestroyPrimitives();
+	physxManager.destroy();
 }
 
 void TestApp::OnUpdate() {
@@ -107,12 +107,12 @@ void TestApp::OnUpdate() {
 	Triangle2[0].ScaleAbsolute(Scaling.x);
 	Triangle2[0].Update();
 
-	/*Cubes[0].TranslateAbsolute(Position.x, Position.y, Position.z);
+	Cubes[0].TranslateAbsolute(Position.x, Position.y, Position.z);
 	Cubes[0].RotateXAbsolute(Orientation.x);
 	Cubes[0].RotateYAbsolute(Orientation.y);
 	Cubes[0].RotateZAbsolute(Orientation.z);
 	Cubes[0].ScaleAbsolute(Scaling.x/10);
-	Cubes[0].Update();*/
+	Cubes[0].Update();
 
 	float speed = 0.5f;
 	static float freq = 0.0f;
@@ -126,16 +126,26 @@ void TestApp::OnUpdate() {
 	Sel->RotateZAbsolute(Orientation.z);
 	Sel->ScaleAbsolute(Scaling.x);
 	Sel->Update();
-	
+	physxManager.update();
 	OnDraw();
 }
 
 void TestApp::OnDraw() {
 	pFramework->pVideoDriver->Clear();
 	Triangle[0].Draw();
-	
 	Triangle1[0].Draw();
 	Triangle2[0].Draw();
+	vector<Vector4D> Positions = physxManager.getCubes();
+	for (int i = 0; i < Positions.size(); ++i) {
+		Triangle2[0].TranslateAbsolute(Position.x, Position.y, Position.z);
+		Triangle2[0].RotateXAbsolute(Orientation.x);
+		Triangle2[0].RotateYAbsolute(Orientation.y);
+		Triangle2[0].RotateZAbsolute(Orientation.z);
+		Triangle2[0].ScaleAbsolute(Scaling.x *4.0f);
+		Triangle2[0].TranslateRelative(Positions[i].x, Positions[i].y, Positions[i].z);
+		Triangle2[0].Update();
+		Triangle2[0].Draw();
+	}
 	pFramework->pVideoDriver->SwapBuffers();
 	FirstFrame = false;
 }
@@ -238,6 +248,9 @@ void TestApp::OnInput() {
 
 	float pitch = 0.005f*static_cast<float>(IManager.yDelta);
 	ActiveCam->MovePitch(pitch);
+	if (IManager.PressedOnceKey(SDLK_SPACE)) {
+		physxManager.createCube(PxTransform(Cam.Eye.x, Cam.Eye.y, Cam.Eye.z));
+	}
 }
 void TestApp::OnPause() {
 

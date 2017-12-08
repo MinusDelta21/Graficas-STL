@@ -5,6 +5,7 @@
 #include <Timer.h>
 #include "Camera.h"
 #include "SceneProps.h"
+#include "PhysxManager.h"
 
 class TestApp : public AppBase {
 public:
@@ -45,4 +46,5 @@ public:
 	int RTIndex;
 	int CamSelection;
 	Vector4D AmbientColor;
+	PhysxManager physxManager;
 };
