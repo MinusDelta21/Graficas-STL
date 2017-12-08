@@ -46,7 +46,7 @@ char *file2string(const char *path) {
 	fseek(fd, 0, SEEK_END);
 	len = ftell(fd);
 	fseek(fd, 0, SEEK_SET);
-	str = (char*)malloc(len * sizeof(char));
+	str = (char*)malloc(len+1 * sizeof(char));
 	r = fread(str, sizeof(char), len, fd);
 	str[r] = '\0';
 	fclose(fd);

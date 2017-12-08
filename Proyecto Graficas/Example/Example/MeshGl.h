@@ -106,6 +106,8 @@ public:
 	GLuint	shaderID;
 	GLint	vertexAttribLoc;
 	GLint	lightPosLoc;
+	//GLint	AmbientLoc;
+	GLint	cameraPosLoc;
 	GLint	normalAttribLoc;
 	GLint	uvAttribLoc;
 	GLint   matWorldViewProjUniformLoc;

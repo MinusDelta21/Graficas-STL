@@ -4,10 +4,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+//#include <PxPhysicsAPI.h>
 
 #define NUM_LIGHTS 124
 #define RADI 170.0f
+//using namespace physx;
+
+
 float g_time;
+
+
 
 void TestApp::InitVars() {
 	DtTimer.Init();
@@ -25,9 +31,9 @@ void TestApp::InitVars() {
 	Cam.Yaw = 0.020f;
 	Cam.Update(0.0f);
 	g_time = 0.0f;
-	LightCam.Init(Vector4D{ 0.0f, 1.0f, 10.0f,0.0f }, Deg2Rad(60.0f), 1.0f, 0.1f, 8000.0f);
+	LightCam.Init(Vector4D{ 0.0f, 25.0f, -15.0f,0.0f }, Deg2Rad(60.0f), 1.0f, 0.1f, 8000.0f);
 	LightCam.Speed = 10.0f;
-	LightCam.Eye = Vector4D{ 0.0f, 25.0f, -40.0f,0.0f };
+	LightCam.Eye = Vector4D{ 0.0f, 35.0f, -40.0f,0.0f };
 	LightCam.Pitch = 0.14f;
 	LightCam.Roll = 0.0f;
 	LightCam.Yaw = 0.020f;
@@ -41,7 +47,7 @@ void TestApp::InitVars() {
 		float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 		float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 		float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-		sceneProps.AddLight(Vector4D{-5.0f,0.0f,0.0f} ,Vector4D{r,g,b,1.0f},true);
+		sceneProps.AddLight(Vector4D{0.0f,25.0f,-35.0f} ,Vector4D{r,g,b,1.0f},true);
 	}
 	RTIndex = -1;
 	FirstFrame = true;
@@ -53,8 +59,6 @@ void TestApp::CreateAssets() {
 	int indexTri2 = PrimitiveMgr.CreateCube();
 	int indexTri3 = PrimitiveMgr.CrateMeshGL((char*)"NuBatman.x", &sceneProps);
 	int indexTri4 = PrimitiveMgr.CrateMeshGL((char*)"CerdoNuevo.x", &sceneProps);
-	
-	//int indexTri = PrimitiveMgr.CrateMeshGL((char*)"EscenarioAtrio.x");
 	Cubes[0].CreateInstance(PrimitiveMgr.GetPrimitive(indexTri2), &VP);
 	Triangle[0].CreateInstance(PrimitiveMgr.GetPrimitive(indexTri), &VP);
 	Triangle1[0].CreateInstance(PrimitiveMgr.GetPrimitive(indexTri3), &VP);
@@ -94,20 +98,21 @@ void TestApp::OnUpdate() {
 	Triangle1[0].ScaleAbsolute(Scaling.x);
 	Triangle1[0].Update();
 
-	Triangle2[0].TranslateAbsolute(Position.x, Position.y, Position.z);
+	//Triangle2[0].TranslateAbsolute(Position.x, Position.y, Position.z);
+	
+	Triangle2[0].TranslateAbsolute(sceneProps.Lights[0].Position.x, sceneProps.Lights[0].Position.y, sceneProps.Lights[0].Position.z);
 	Triangle2[0].RotateXAbsolute(Orientation.x);
 	Triangle2[0].RotateYAbsolute(Orientation.y);
 	Triangle2[0].RotateZAbsolute(Orientation.z);
 	Triangle2[0].ScaleAbsolute(Scaling.x);
 	Triangle2[0].Update();
 
-	Cubes[0].TranslateAbsolute(Position.x, Position.y, Position.z);
+	/*Cubes[0].TranslateAbsolute(Position.x, Position.y, Position.z);
 	Cubes[0].RotateXAbsolute(Orientation.x);
 	Cubes[0].RotateYAbsolute(Orientation.y);
 	Cubes[0].RotateZAbsolute(Orientation.z);
 	Cubes[0].ScaleAbsolute(Scaling.x/10);
-	Cubes[0].TranslateRelative(-sceneProps.Lights[0].Position.x, -sceneProps.Lights[0].Position.y, -sceneProps.Lights[0].Position.z);
-	Cubes[0].Update();
+	Cubes[0].Update();*/
 
 	float speed = 0.5f;
 	static float freq = 0.0f;
@@ -121,13 +126,14 @@ void TestApp::OnUpdate() {
 	Sel->RotateZAbsolute(Orientation.z);
 	Sel->ScaleAbsolute(Scaling.x);
 	Sel->Update();
+	
 	OnDraw();
 }
 
 void TestApp::OnDraw() {
 	pFramework->pVideoDriver->Clear();
 	Triangle[0].Draw();
-	Cubes[0].Draw();
+	
 	Triangle1[0].Draw();
 	Triangle2[0].Draw();
 	pFramework->pVideoDriver->SwapBuffers();
@@ -139,7 +145,7 @@ void TestApp::OnInput() {
 		return;
 
 	bool changed = false;
-	const float speedFactor = 10.0f;
+	const float speedFactor = 5.0f;
 	if (IManager.PressedKey(SDLK_DOWN)) {
 		//Position.y += 1.0f*speedFactor*Dtsecs;
 		sceneProps.Lights[0].Position.y -= 1.0f*speedFactor*Dtsecs;

@@ -1,2 +1,10 @@
-﻿  TestApp.vcxproj -> C:\Users\Santiago\Desktop\Graficas-STL\Proyecto Graficas\Example\bin\TestApp.exe
+﻿  TestApp.cpp
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
+  Application.cpp
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  TestApp.vcxproj -> C:\Users\Santiago\Desktop\Graficas-STL\Proyecto Graficas\Example\bin\TestApp.exe
   TestApp.vcxproj -> C:\Users\Santiago\Desktop\Graficas-STL\Proyecto Graficas\Example\bin\TestApp.pdb (Full PDB)

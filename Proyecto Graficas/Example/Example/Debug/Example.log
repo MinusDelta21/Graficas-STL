@@ -1,10 +1,71 @@
-﻿  MeshGl.cpp
+﻿  XDataBase.cpp
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
 c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(331): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(335): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(360): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(479): warning C4018: '<': signed/unsigned mismatch
-c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(481): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(204): warning C4521: 'xF::xRotationKey': multiple copy constructors specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(204): warning C4522: 'xF::xRotationKey': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(229): warning C4521: 'xF::xScaleKey': multiple copy constructors specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(229): warning C4522: 'xF::xScaleKey': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(254): warning C4521: 'xF::xPositionKey': multiple copy constructors specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(254): warning C4522: 'xF::xPositionKey': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(479): warning C4521: 'xF::xFinalGeometry': multiple copy constructors specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\xdefs.h(479): warning C4522: 'xF::xFinalGeometry': multiple assignment operators specified
+  Win32Framework.cpp
+  UtilsGL.cpp
+  TriangleGL.cpp
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
+  Timer.cpp
+  Textures.cpp
+  SceneProps.cpp
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
+  BaseDriver.cpp
+  PrimitiveManager.cpp
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
+  PrimitiveInstance.cpp
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\primitiveinstance.cpp(10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\primitiveinstance.cpp(17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\primitiveinstance.cpp(23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\primitiveinstance.cpp(41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\primitiveinstance.cpp(49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\primitiveinstance.cpp(57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  MeshGl.cpp
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(333): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(337): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(362): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(482): warning C4018: '<': signed/unsigned mismatch
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\meshgl.cpp(484): warning C4018: '<': signed/unsigned mismatch
+  Matrix4D.cpp
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.cpp(260): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.cpp(271): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.cpp(427): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.cpp(507): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.cpp(524): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.cpp(622): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.cpp(630): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  InputManager.cpp
+  GLDriver.cpp
+  D3DXTexture.cpp
+  D3DXShader.cpp
+  D3DXRT.cpp
+  D3DXMesh.cpp
+  D3DXDriver.cpp
+  CubeGL.cpp
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
+  Generating Code...
+  Compiling...
+  Core.cpp
+  Camera.cpp
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(124): warning C4522: 'Vector2': multiple assignment operators specified
+c:\users\santiago\desktop\graficas-stl\proyecto graficas\example\example\matrix4d.h(191): warning C4522: 'Vector3': multiple assignment operators specified
+  Generating Code...
 Core.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
   Example.vcxproj -> C:\Users\Santiago\Desktop\Graficas-STL\Proyecto Graficas\Example\Debug\Framework.lib

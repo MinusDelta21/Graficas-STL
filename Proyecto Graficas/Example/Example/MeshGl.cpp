@@ -56,6 +56,8 @@ void MeshGL::Create() {
 	matWorldUniformLoc = glGetUniformLocation(shaderID, "World");
 	DiffuseLoc = glGetUniformLocation(shaderID, "Diffuse");
 	lightPosLoc = glGetUniformLocation(shaderID, "LightPos");
+	cameraPosLoc = glGetUniformLocation(shaderID, "CameraPos");
+	//AmbientLoc = glGetUniformLocation(shaderID, "Ambient");
 #elif defined(USING_D3D11)
 	HRESULT hr;
 	tex = new D3DXTexture;
@@ -403,8 +405,9 @@ void MeshGL::Draw(float *t, float *vp) {
 
 	glUniformMatrix4fv(matWorldUniformLoc, 1, GL_FALSE, &transform.myMatrix.m[0][0]);
 	glUniformMatrix4fv(matWorldViewProjUniformLoc, 1, GL_FALSE, &WVP.myMatrix.m[0][0]);
-	//Vector4D LightPos = Vector4D{ 5,0,0 };
  	glUniform4fv(lightPosLoc, 1, &theProps->Lights[0].Position.v[0]);
+	glUniform4fv(cameraPosLoc, 1, &theProps->pCameras[0]->Eye.v[0]);
+
 	for (int i = 0; i < Meshes.size(); i++) {
 
 		glBindBuffer(GL_ARRAY_BUFFER, Info[i].VB);
